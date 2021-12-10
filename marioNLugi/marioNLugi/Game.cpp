@@ -109,6 +109,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	getDirection();
+	move();
 }
 
 /// <summary>
@@ -161,10 +163,10 @@ void Game::setupSprite()
 		std::cout << "problem loading logo" << std::endl;
 	}
 	m_characterSprite.setTexture(m_marioNluigiTex);
-	m_characterSprite.setPosition(sf::Vector2f{ 0.0f,0.0f });
+	m_characterSprite.setPosition(m_location);
 	m_characterSprite.setTextureRect(sf::IntRect(0, 0, 64, 148));
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	m_characterSprite.setOrigin(sf::Vector2f{ 32.0f,74.0f });
+
 }
 
 void Game::changeCharacter()
@@ -182,4 +184,52 @@ void Game::changeCharacter()
 		m_characterName.setFillColor(sf::Color::Red);
 	}
 	m_ImMario = !m_ImMario;
+}
+
+void Game::getDirection()
+{
+	m_direction = Direction::None;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		m_direction = Direction::Up;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		m_direction = Direction::Down;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_direction = Direction::Left;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_direction = Direction::Right;
+	}
+
+}
+
+void Game::move()
+{
+	sf::Vector2f move{ 0.0f,0.0f };
+	switch (m_direction)
+	{
+	case Direction::None:
+		break;
+	case Direction::Up:
+		move.y = -m_speed;
+		break;
+	case Direction::Down:
+		move.y = m_speed;
+		break;
+	case Direction::Left:
+		move.x = -m_speed;
+		break;
+	case Direction::Right:
+		move.x = m_speed;
+		break;
+	default:
+		break;
+	}
+	m_location += move;
+	m_characterSprite.setPosition(m_location);
 }
