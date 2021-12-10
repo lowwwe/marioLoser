@@ -111,6 +111,8 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	getDirection();
 	move();
+	checkBoundries();
+
 }
 
 /// <summary>
@@ -233,3 +235,24 @@ void Game::move()
 	m_location += move;
 	m_characterSprite.setPosition(m_location);
 }
+
+void Game::checkBoundries()
+{
+	if (m_location.x < 32.0f)
+	{
+		m_location.x = 32.0;
+	}
+	if (m_location.x > 800.0f - 32.0f)
+	{
+		m_location.x = 768.0f;
+	}
+	if (m_location.y < 74.0f)
+	{
+		m_location.y = 74.0f;
+	}
+	if (m_location.y > 600.0f - 74.0f)
+	{
+		m_location.y = 600.0f - 74.0f;
+	}
+}
+

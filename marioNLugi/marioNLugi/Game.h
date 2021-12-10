@@ -43,6 +43,7 @@ private:
 	void changeCharacter();
 	void getDirection();
 	void move();
+	void checkBoundries();
 
 
 
