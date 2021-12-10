@@ -18,8 +18,10 @@
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_ImMario{true},
 	m_exitGame{false} //when true game will exit
 {
+	m_ImMario = true;
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }
@@ -91,6 +93,10 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+	if (sf::Keyboard::Space == t_event.key.code)
+	{
+		changeCharacter();
+	}
 }
 
 /// <summary>
@@ -156,7 +162,24 @@ void Game::setupSprite()
 	}
 	m_characterSprite.setTexture(m_marioNluigiTex);
 	m_characterSprite.setPosition(sf::Vector2f{ 0.0f,0.0f });
-	m_characterSprite.setTextureRect(sf::IntRect(64, 0, 64, 148));
+	m_characterSprite.setTextureRect(sf::IntRect(0, 0, 64, 148));
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
+}
+
+void Game::changeCharacter()
+{
+	if (m_ImMario)
+	{
+		m_characterSprite.setTextureRect(sf::IntRect(64, 0, 64, 148));
+		m_characterName.setString("Luigi");
+		m_characterName.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_characterSprite.setTextureRect(sf::IntRect(0, 0, 64, 148));
+		m_characterName.setString("Mario");
+		m_characterName.setFillColor(sf::Color::Red);
+	}
+	m_ImMario = !m_ImMario;
 }

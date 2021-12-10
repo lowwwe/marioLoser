@@ -1,4 +1,4 @@
-/// <summary>
+/// <summary>;
 /// author Pete Lowe May 2019
 /// you need to change the above line or lose marks
 /// </summary>
@@ -30,6 +30,9 @@ private:
 	
 	void setupFontAndText();
 	void setupSprite();
+	void changeCharacter();
+
+
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_marioFont; // mario font 
@@ -41,7 +44,7 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
-
+	bool m_ImMario{ true }; // is the current character mario
 };
 
 #endif // !GAME_HPP
