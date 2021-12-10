@@ -32,8 +32,10 @@ private:
 	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
+	sf::Font m_marioFont; // mario font 
+	sf::Text m_characterName; // name of mario or luigi on scrteen
+	
+	
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
