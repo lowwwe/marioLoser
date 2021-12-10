@@ -114,6 +114,7 @@ void Game::render()
 	
 	m_window.draw(m_logoSprite);
 	m_window.draw(m_characterName);
+	m_window.draw(m_characterSprite);
 	m_window.display();
 }
 
@@ -144,11 +145,18 @@ void Game::setupFontAndText()
 /// </summary>
 void Game::setupSprite()
 {
+	if (!m_marioNluigiTex.loadFromFile("ASSETS\\IMAGES\\mario-luigi-64.png"))
+	{
+		std::cout << "problem with mario texture" << std::endl;
+	}
 	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
+	m_characterSprite.setTexture(m_marioNluigiTex);
+	m_characterSprite.setPosition(sf::Vector2f{ 0.0f,0.0f });
+	m_characterSprite.setTextureRect(sf::IntRect(64, 0, 64, 148));
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
 }

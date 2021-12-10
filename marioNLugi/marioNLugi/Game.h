@@ -35,7 +35,9 @@ private:
 	sf::Font m_marioFont; // mario font 
 	sf::Text m_characterName; // name of mario or luigi on scrteen
 	
-	
+	sf::Texture m_marioNluigiTex; // texture for png opf the boys
+	sf::Sprite m_characterSprite; // sprite fopr msrio or luigi
+
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
